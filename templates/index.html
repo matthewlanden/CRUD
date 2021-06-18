@@ -1,0 +1,46 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To Do App</title>
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    
+ <main>
+    <div class="main">
+
+        <div class="f1">
+            <form class="form" action="." method="POST">
+                {% csrf_token%}
+                {{form.task}}
+                
+                <button type="submit" class="mybtn input2"> SET </button>
+            </form>
+        </div>
+        <br>
+        <div class="f2">
+            
+                {% for task in tasks %}
+                <div class="v2">
+                    <div class="tas{%if task.complete == True %} black {%endif%}">
+                        <p class="item {%if task.complete == True %} strike {%endif%}">{{task.task}}</p>
+                        
+                        <p class="time">{{task.date}} | {{task.time}}  |  {{task.datetime | timesince}}</p>
+                    </div>
+
+
+                        <div class="UD">
+                            <a href="{% url 'updateindex' task.id %}" class="mybtn btn update">update</a>
+                            <a href="{% url 'deleteindex' task.id %}" class="mybtn delete btn">delete</a>
+                        </div>
+                    <br>
+                </div>
+            {%endfor%}
+        </div>
+    </div>
+</main>
+</body>
+</html>

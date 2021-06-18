@@ -1,0 +1,34 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To Do App</title>
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    
+ <main>
+    <div class="main">
+
+        <div class="f1">
+            <form class="formupdate" method="POST">
+                {% csrf_token%}
+                <!-- task title -->
+                {{form.task.label}}
+                {{form.task}}
+                <br><br>
+                <!-- completed task boolean -->
+                
+                {{form.complete}}
+
+                <button type="submit" class="mybtn input2"> SET </button>
+            </form>
+        </div>
+        
+        
+    </div>
+</main>
+</body>
+</html>
